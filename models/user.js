@@ -22,6 +22,24 @@ module.exports = (sequelize, DataTypes) => {
         }
       )
     }
+    can(action){
+      let allowedActions=[];
+      if (this.role === 'staff'){
+        allowedActions= [
+            'add course',
+            'edit course',
+            'delete course',
+            'view students',
+            'view student profiles',
+            'enroll student',
+            'drop student',
+            'delete student'
+        ]
+      } else {
+        allowedActions = ['view self', 'enroll self', 'drop self', 'edit self']
+      }
+      return allowedActions.indexOf(action)!== -1
+    }
   }
   User.init({
     email: DataTypes.STRING,
