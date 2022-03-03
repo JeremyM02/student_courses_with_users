@@ -20,6 +20,6 @@ Can I have staff delete a student entirely? Yes
 Can a student view their profile? Yes
 Can a student enroll themself to a course from their student profile? No
 Can a student enroll themself to a course from its course profile? No
-Can a student drop a course fromt their student profile? No
+Can a student drop a course from their student profile? No
 Can a student drop a course from its course profile? Yes
 Can a student edit their profile? Yes
