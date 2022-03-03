@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     matchesStudentId(id){
         if(!this.student){
+            console.log('false');
             return false;
         }
         return this.student.id === id;
