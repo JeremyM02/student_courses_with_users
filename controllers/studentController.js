@@ -1,4 +1,4 @@
-const {Student, Course, StudentCourses} = require('../models')
+const {Student, Course, StudentCourses} = require('../models');
 
 //view all
 module.exports.viewAll = async function (req, res) {
@@ -8,7 +8,7 @@ module.exports.viewAll = async function (req, res) {
     }
     const students = await Student.findAll();
     res.render('student/view_all', {students});
-}
+};
 
 //profile
 module.exports.viewProfile = async function (req, res) {
@@ -17,7 +17,7 @@ module.exports.viewProfile = async function (req, res) {
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
-        res.redirect('/')
+        res.redirect('/');
         return
     }
     const student = await Student.findByPk(req.params.id, {
@@ -31,7 +31,7 @@ module.exports.viewProfile = async function (req, res) {
         }
     }
     res.render('student/profile', {student, availableCourses})
-}
+};
 
 //render edit
 module.exports.renderEditForm = async function (req, res) {
@@ -40,13 +40,13 @@ module.exports.renderEditForm = async function (req, res) {
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
-        res.redirect('/')
+        res.redirect('/');
         return
     }
     const student = await Student.findByPk(req.params.id);
     console.log(student);
     res.render('student/edit', {student});
-}
+};
 
 //update
 module.exports.updateStudent = async function (req, res) {
@@ -55,7 +55,7 @@ module.exports.updateStudent = async function (req, res) {
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
-        res.redirect('/')
+        res.redirect('/');
         return
     }
     await Student.update({
@@ -69,7 +69,7 @@ module.exports.updateStudent = async function (req, res) {
         }
     });
     res.redirect(`/students/profile/${req.params.id}`);
-}
+};
 
 //delete
 module.exports.deleteStudent = async function (req, res) {
@@ -83,7 +83,7 @@ module.exports.deleteStudent = async function (req, res) {
         }
     });
     res.redirect('/students');
-}
+};
 
 //Add course to student
 module.exports.enrollStudent = async function (req, res) {
@@ -92,16 +92,16 @@ module.exports.enrollStudent = async function (req, res) {
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
-        res.redirect('/')
+        res.redirect('/');
         return
     }
         await StudentCourses.create({
             student_id: req.params.studentId,
             course_id: req.body.course
-        })
+        });
         res.redirect(`/students/profile/${req.params.studentId}`);
 
-}
+};
 
 //delete course from student
 module.exports.removeCourse = async function(req, res){
@@ -110,7 +110,7 @@ module.exports.removeCourse = async function(req, res){
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
-        res.redirect('/')
+        res.redirect('/');
         return
     }
     await StudentCourses.destroy({
@@ -120,7 +120,7 @@ module.exports.removeCourse = async function(req, res){
         }
     });
     res.redirect(`/students/profile/${req.params.studentId}`)
-}
+};
 
 function studentHasCourse(student, course) {
     for (let i = 0; i < student.courses.length; i++) {
