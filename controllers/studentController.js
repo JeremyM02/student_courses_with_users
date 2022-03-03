@@ -73,7 +73,7 @@ module.exports.updateStudent = async function (req, res) {
 
 //delete
 module.exports.deleteStudent = async function (req, res) {
-    if (!user.can('delete student')){
+    if (!req.user.can('delete student')){
         res.redirect('/');
         return
     }
