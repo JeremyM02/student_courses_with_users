@@ -1,7 +1,7 @@
 # student_courses_with_users
 For the 6.2 project, where we need to use the student_registration repository, and create users with students and staff.
 
-Quick Checklist:
+Quick Checklist: Complete
 
 Can I register staff? Yes
 Can I register students? Yes
