@@ -88,7 +88,7 @@ module.exports.deleteStudent = async function (req, res) {
 //Add course to student
 module.exports.enrollStudent = async function (req, res) {
     const isAdmin = req.user.can('enroll student');
-    const profileBelongsToUser = req.user.can('enroll self') && req.user.matchesStudentId(req.params.id);
+    const profileBelongsToUser = req.user.can('enroll self') && req.user.matchesStudentId(req.params.studentId);
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
@@ -106,7 +106,7 @@ module.exports.enrollStudent = async function (req, res) {
 //delete course from student
 module.exports.removeCourse = async function(req, res){
     const isAdmin = req.user.can('drop student');
-    const profileBelongsToUser = req.user.can('drop self') && req.user.matchesStudentId(req.params.id);
+    const profileBelongsToUser = req.user.can('drop self') && req.user.matchesStudentId(req.params.studentId);
 
     //if they aren't staff and they aren't the student whose profile they are trying to view, redirect
     if (!isAdmin && !profileBelongsToUser) {
